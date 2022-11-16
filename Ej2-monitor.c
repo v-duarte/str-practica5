@@ -73,7 +73,7 @@ void *menor(void *args)
     int total;
     float promedio;
 
-    for(int j = 0; j < 10; j++)
+    for(int i = 0; i < 10; i++)
     {
         pthread_mutex_lock(&mutexMenor);
 
@@ -86,7 +86,7 @@ void *menor(void *args)
         
         ultimosValores[i+1] = ultimosValores[i+2];
 
-        ultimosValores[i+2]] =ultimosValores[i-3] 
+        ultimosValores[i+2] =ultimosValores[i-3]; 
 
 
 
