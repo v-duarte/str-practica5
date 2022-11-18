@@ -21,9 +21,10 @@ int main(int argc, char *argv[])
 {
     int fd;
     char * pipe = "pipe";
-
+	fd = open(file, O_RDONLY);
 	pthread_t threads[2];
-
+	
+	pthread_mutex_lock(&mutexMayor);
     pthread_mutex_lock(&mutexMenor);
 
     if (pthread_create(threads + 0, NULL, mayor, (void *)(intptr_t)0))
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
     for(int i = 0; i < 10; i++)
     {
         pthread_mutex_lock(&mutexMayor);
+		read(fd, &temp, sizeof(temp));
         printf("Ingrese un valor: ");
         scanf("%d", &temp);
         pthread_mutex_unlock(&mutexMayor);
@@ -88,16 +90,10 @@ void *menor(void *args)
 
         ultimosValores[i+2] =ultimosValores[i-3]; 
 
-
-
         total += ultimosValores[i];
-            
-        
-
-        
         promedio = total / 3.0;
         printf("\tPromedio de los ultimos 3 valores: %.2f", promedio);
-
+		pthread_mutex_unlock(&mutexMenor);
     }
 }
 
