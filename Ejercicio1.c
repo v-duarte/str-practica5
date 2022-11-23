@@ -59,14 +59,14 @@ void *thread_function(void *args)
 
     for(int i = 0; i < 1000; i++)
     {	
-    	entro[id]=getTime();// toma el tiempo queentro el thread 
-       	usleep(10000);// lo duerme tanto microsegundos 
-       	salio[id]=getTime();// toma el tiempo que salio el thread 
+    	entro[id]=getTime();// toma el tiempo en el que entro el thread 
+       	usleep(10000);// lo duerme por 10 microsegundos 
+       	salio[id]=getTime();// toma el tiempo en el que salio el thread 
 
 
-        latencia[id] = latencia[id] + (salio[id] - entro[id] + 10);// en que tiempo esta ??? en segundos ?????? 
+        latencia[id] = latencia[id] + (salio[id] - entro[id] + 10/1000); //valor de latencia acumulada en segundos
         
-        //latencia del thread es igual ala latencia + (el timempo que salio el thread - el tiempo que entro - 10 ms)
+        //latencia del thread es igual ala latencia + (el tiempo que salio el thread - el tiempo que entro - 10 ms)
         // porque 10 ms porque se ejecutan en 1000 opotunidades , y como se ejecutan 100 veces , cada uno va ser 10 ms 		
     }
 
